@@ -1,21 +1,40 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './views/Home.vue';
-import About from './views/About.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import SongbookEditor from './views/SongbookEditor.vue'
+import SongbookList from './views/SongbookList.vue'
+import SongList from './views/SongList.vue'
+import VariantView from './views/VariantView.vue'
+import VariantEdit from './views/VariantEdit.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About,
-    },
-  ],
+	mode: 'history',
+	routes: [
+		{
+			path: '/',
+			name: 'songList',
+			component: SongList,
+		},
+		{
+			path: '/songbook',
+			name: 'songbookList',
+			component: SongbookList,
+		},
+		{
+			path: '/songbook/:id',
+			name: 'songbook',
+			component: SongbookEditor,
+		},
+		{
+			path: '/song/variant/:id',
+			name: 'variantView',
+			component: VariantView,
+		},
+		{
+			path: '/song/variant/:id/edit',
+			name: 'variantEdit',
+			component: VariantEdit,
+		},
+	],
 });
