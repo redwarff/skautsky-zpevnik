@@ -17,6 +17,7 @@
     "no-consecutive-blank-lines": false,
     "max-line-length": false,
     "semicolon": false,
-    "space-before-function-paren": false
+    "space-before-function-paren": false,
+    "no-console": false
   }
 }

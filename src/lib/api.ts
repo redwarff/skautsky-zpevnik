@@ -51,23 +51,23 @@ export default class Api {
 		})
 	}
 
-	public async getSong (id: number) {
+	public async getSong (id: string) {
 		return api.get(`songs/${id}`)
 	}
 
-	public async getUsersName (id: number) {
+	public async getUsersName (id: string) {
 		return api.get(`users/${id}`)
 	}
 
-	public async getSongbook (id: number) {
+	public async getSongbook (id: string) {
 		return api.get(`songbooks/${id}`)
 	}
 
-	public async exportSong (id: number) {
+	public async exportSong (id: string) {
 		return exportApi.get(`songs/${id}`)
 	}
 
-	public async exportSongbook (id: number) {
+	public async exportSongbook (id: string) {
 		return exportApi(`songbooks/${id}`)
 	}
 
@@ -79,7 +79,7 @@ export default class Api {
 		return api.post('interpreters', { name })
 	}
 
-	public async deleteAuthor (id: number) {
+	public async deleteAuthor (id: string) {
 		return api.delete(`authors/${id}`)
 	}
 
@@ -99,7 +99,7 @@ export default class Api {
 		return api.put(`songbooks/${id}`, songBook)
 	}
 
-	public async deleteSongbook (id: number) {
+	public async deleteSongbook (id: string) {
 		return api.delete(`songbooks/${id}`)
 	}
 }
