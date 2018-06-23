@@ -11,6 +11,7 @@
 						<th>#</th>
 						<th>Píseň</th>
 						<th>Interpret</th>
+						<th>Akce</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -19,13 +20,14 @@
 							<icon name="spinner" pulse></icon>
 						</td>
 					</tr>
-						<router-link tag="tr" v-if="isReady" v-for="(song, i) in items" :key="song.id"
-							:to="{ name: 'variantView', params: { songId: song.id, variantId: song.variants[0].id } }"
-							class="list-item clickable">
-							<td>{{ i + 1 + page * perPage }}</td>
-							<td>{{ song.title }}</td>
-							<td>{{ mapInterpretersNames(song.interpreters) }}</td>
-						</router-link>
+					<router-link tag="tr" v-if="isReady" v-for="(song, i) in items" :key="song.id"
+						:to="{ name: 'variantView', params: { songId: song.id, variantId: song.variants[0].id } }"
+						class="list-item clickable">
+						<td>{{ i + 1 + page * perPage }}</td>
+						<td>{{ song.title }}</td>
+						<td>{{ mapInterpretersNames(song.interpreters) }}</td>
+						<td><router-link :to="{ name: 'variantEdit', params: { songId: song.id, variantId: song.variants[0].id } }" >Upravit</router-link></td>
+					</router-link>
 				</tbody>
 			</table>
 			<pagination :activePage="page" :lastPage="lastPage" :goToPage="goToPage" ></pagination>

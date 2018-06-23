@@ -11,6 +11,7 @@ interface IVariant {
 }
 
 interface ISong {
+	id: string;
 	title: string;
 	authors: IAuthorsObject;
 	interpreters: number[];
@@ -49,6 +50,12 @@ interface IInterpreter {
 interface IInterpreterStoreState {
 	state: EStateTypes;
 	items: IInterpreter[];
+	error?: any;
+}
+
+interface ISongStoreState {
+	state: EStateTypes;
+	song?: ISong;
 	error?: any;
 }
 

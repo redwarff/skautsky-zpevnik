@@ -63,10 +63,6 @@ export default class Api {
 		return api.get(`songbooks/${id}`)
 	}
 
-	public async exportSong (id: string) {
-		return exportApi.get(`songs/${id}`)
-	}
-
 	public async exportSongbook (id: string) {
 		return exportApi(`songbooks/${id}`)
 	}
