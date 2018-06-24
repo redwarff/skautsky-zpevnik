@@ -79,7 +79,7 @@ export default class Api {
 		return api.delete(`authors/${id}`)
 	}
 
-	public async createSong (song: ISong) {
+	public async createSong (song: ICreateSong) {
 		return api.post('songs', song)
 	}
 
@@ -87,11 +87,15 @@ export default class Api {
 		return api.post('songbooks', { title })
 	}
 
-	public async updateSong (id: number, song: ISong) {
+	public async updateSong (id: string, song: ISong) {
 		return api.put(`songs/${id}`, song)
 	}
 
-	public async updateSongbook (id: number, songBook: ISongBook) {
+	public async updateVariant (songId: string, variantId: string, variant: IVariant) {
+		return api.put(`songs/${songId}/variants/${variantId}`, variant)
+	}
+
+	public async updateSongbook (id: string, songBook: ISongBook) {
 		return api.put(`songbooks/${id}`, songBook)
 	}
 

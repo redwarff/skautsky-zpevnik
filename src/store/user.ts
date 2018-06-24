@@ -7,7 +7,7 @@ const userModule = {
 	namespaced: true,
 	state: {
 		currentUser: undefined,
-		state: EStateTypes.loading,
+		state: EStateTypes.ready,
 		items: [],
 		error: undefined,
 	} as IUserStoreState,

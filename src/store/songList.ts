@@ -6,7 +6,7 @@ const api = new Api()
 const songListModule = {
 	namespaced: true,
 	state: {
-		state: EStateTypes.loading,
+		state: EStateTypes.ready,
 		items: [],
 		searchQuery: '',
 		page: 0,

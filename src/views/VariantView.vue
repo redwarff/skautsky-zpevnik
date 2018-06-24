@@ -10,8 +10,8 @@
 					<h5>{{ mapInterpretersNames(song.interpreters) }}</h5>
 				</div>
 				<div class="variant-wrapper">
-					<select :model="variantId">
-						<option v-for="(variant, i) in song.variants" :key="variant.id">Varianta {{ i + 1 }}</option>
+					<select v-model="variantId">
+						<option v-for="(variant, i) in song.variants" :key="variant.id" :value="variant.id">Varianta {{ i + 1 }}</option>
 					</select>
 					<div class="variant-desc">
 						<strong>Popis varianty:</strong> {{ variantById(variantId).description }}
@@ -137,8 +137,9 @@ export default class VariantView extends Vue {
 
 	@Watch('variantId')
 	private onVariantChange (to: string, from: string) {
+		console.log(to, from)
 		if (to && from && to !== from) {
-			this.$router.push({ name: 'VariantView', params: { songId: this.song.id, variantId: to } })
+			this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: to } })
 		}
 	}
 }

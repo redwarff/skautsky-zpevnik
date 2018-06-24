@@ -1,21 +1,28 @@
 interface IAuthorsObject {
-	music?: number[];
-	lyrics?: number[];
+	music?: string[];
+	lyrics?: string[];
 }
 
 interface IVariant {
 	id: string;
 	text: string;
 	description: string;
-	visibility?: any; // TODO what options do we have
+	visibility?: number;
 }
 
 interface ISong {
 	id: string;
 	title: string;
 	authors: IAuthorsObject;
-	interpreters: number[];
+	interpreters: string[];
 	variants: IVariant[];
+}
+
+interface ICreateSong {
+	title: string;
+	authors: IAuthorsObject;
+	interpreters: string[];
+	variant: Partial<IVariant>;
 }
 
 interface ISongBookSong {
@@ -47,7 +54,18 @@ interface IInterpreter {
 	name: string;
 }
 
+interface IAuthor {
+	id: string;
+	name: string;
+}
+
 interface IInterpreterStoreState {
+	state: EStateTypes;
+	items: IInterpreter[];
+	error?: any;
+}
+
+interface IAuthorStoreState {
 	state: EStateTypes;
 	items: IInterpreter[];
 	error?: any;
@@ -81,6 +99,11 @@ interface ISongListStoreGetters {
 	readonly lastPage: number;
 	readonly canNext: boolean;
 	readonly canPrev: boolean;
+}
+
+interface ISelectOption {
+	value: any;
+	label: string;
 }
 
 enum EStateTypes {

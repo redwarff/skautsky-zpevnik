@@ -3,15 +3,15 @@ import { EStateTypes } from '../lib/enums'
 
 const api = new Api()
 
-const interpreterModule = {
+const authorModule = {
 	namespaced: true,
 	state: {
 		state: EStateTypes.ready,
 		items: [],
 		error: undefined,
-	} as IInterpreterStoreState,
+	} as IAuthorStoreState,
 	getters: {
-		itemById: (state: IInterpreterStoreState) => (id: string) => {
+		itemById: (state: IAuthorStoreState) => (id: string) => {
 			return state.items.find((item) => item.id === id)
 		},
 		itemByName: (state: IInterpreterStoreState) => (name: string) => {
@@ -19,16 +19,16 @@ const interpreterModule = {
 		},
 	},
 	mutations: {
-		setItems (state: IInterpreterStoreState, items: IInterpreter[]) {
+		setItems (state: IAuthorStoreState, items: IAuthor[]) {
 			state.items = items
 		},
-		setState (state: IInterpreterStoreState, moduleState: EStateTypes) {
+		setState (state: IAuthorStoreState, moduleState: EStateTypes) {
 			state.state = moduleState
 		},
-		setError (state: IInterpreterStoreState, error: any) {
+		setError (state: IAuthorStoreState, error: any) {
 			state.error = error
 		},
-		addItem (state: IInterpreterStoreState, item: IInterpreter) {
+		addItem (state: IAuthorStoreState, item: IAuthor) {
 			state.items.push(item)
 		},
 	},
@@ -36,7 +36,7 @@ const interpreterModule = {
 		async fetch({ commit }: { commit: any }) {
 			commit('setState', EStateTypes.loading)
 			try {
-				const response = await api.getInterpreters()
+				const response = await api.getAuthors()
 				commit('setItems', response.data)
 				commit('setState', EStateTypes.ready)
 			} catch (error) {
@@ -48,7 +48,7 @@ const interpreterModule = {
 		async create({ commit }: { commit: any }, name: string) {
 			commit('setState', EStateTypes.loading)
 			try {
-				const response = await api.createInterpreter(name)
+				const response = await api.createAuthor(name)
 				commit('addItem', response.data)
 				commit('setState', EStateTypes.ready)
 			} catch (error) {
@@ -60,4 +60,4 @@ const interpreterModule = {
 	},
 }
 
-export default interpreterModule
+export default authorModule
