@@ -116,7 +116,6 @@ export default class VariantView extends Vue {
 
 	@Watch('variantId')
 	private onVariantChange (to: string, from: string) {
-		console.log(to, from)
 		if (to && from && to !== from) {
 			this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: to } })
 		}
