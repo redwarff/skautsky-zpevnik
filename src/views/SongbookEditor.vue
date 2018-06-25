@@ -1,7 +1,7 @@
 <template>
 	<page-layout title="Editace zpěvníku">
 		<template slot="header-button">
-			<router-link class="btn btn-primary" :to="{ name: 'songbookAddSongs', params: { songbookId: songbookId } }">Přidat písně</router-link>
+			<router-link v-if="!isNew" class="btn btn-primary" :to="{ name: 'songbookAddSongs', params: { songbookId: songbookId } }">Přidat písně</router-link>
 		</template>
 		<div class="col-sm-12 col-md-6">
 			<form>
@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import PageLayout from '@/layouts/PageLayout.vue'
 import { namespace } from 'vuex-class'
 import { EStateTypes } from '@/lib/enums'
@@ -96,7 +96,7 @@ export default class SongbookEdit extends Vue {
 	private sortChanged = false
 
 	private get isChanged () {
-		return this.songbookTitle !== this.songbook.title || this.songs.length !== this.songbook.songs.length || this.sortChanged
+		return this.isNew || this.songbookTitle !== this.songbook.title || this.songs.length !== this.songbook.songs.length || this.sortChanged
 	}
 
 	private get isReady () {
@@ -164,9 +164,26 @@ export default class SongbookEdit extends Vue {
 	}
 
 	private formInit () {
-		this.songbookTitle = this.songbook.title
-		this.songs = this.songbook.songs.sort((a, b) => a.order - b.order)
-		this.songbookId = this.songbook.id
+		if (!this.isNew) {
+			this.songbookTitle = this.songbook.title
+			this.songs = this.songbook.songs.sort((a, b) => a.order - b.order)
+			this.songbookId = this.songbook.id
+		} else {
+			this.songbookTitle = ''
+			this.songs = []
+			this.songbookId = ''
+		}
+	}
+
+	@Watch('$route')
+	private onRouteChange (to: any, from: any) {
+		if (to.params.songbookId) {
+			this.fetch(to.params.songbookId)
+			this.isNew = false
+		} else {
+			this.isNew = true
+		}
+		this.formInit()
 	}
 }
 </script>

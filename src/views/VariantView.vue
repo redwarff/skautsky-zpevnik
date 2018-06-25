@@ -63,7 +63,7 @@ export default class VariantView extends Vue {
 	}
 
 	private get formattedVariantText () {
-		const text = this.variantById(this.variantId).text.replace(/\[verse\]/ig, '')
+		const text = this.variantById(this.variantId).text.replace(/\[verse\]/ig, '').replace(/\[chorus\]/ig, '')
 		const lines = text
 			.split(/[\n\r]/)
 			.map((line) => line.trim())

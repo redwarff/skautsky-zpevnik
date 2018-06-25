@@ -8,6 +8,7 @@ const songModule = {
 	namespaced: true,
 	state: {
 		state: EStateTypes.ready,
+		error: undefined,
 	} as ISongStoreState,
 	getters: {
 		variantById: (state: ISongStoreState) => (id: string) => {
@@ -70,6 +71,7 @@ const songModule = {
 		},
 		async createVariant({ commit, state }: { commit: any, state: ISongStoreState }, variant: IVariant) {
 			commit('setState', EStateTypes.loading)
+			commit('setError', undefined)
 			try {
 				const response = await api.createVariant(state.song!.id, variant)
 				commit('addVariant', response.data)
@@ -83,6 +85,7 @@ const songModule = {
 		},
 		async updateVariant({ commit, state }: { commit: any, state: ISongStoreState }, variant: IVariant ) {
 			commit('setState', EStateTypes.loading)
+			commit('setError', undefined)
 			try {
 				const response = await api.updateVariant(state.song!.id, variant.id, variant)
 				commit('setVariant', response.data)

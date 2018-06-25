@@ -6,6 +6,9 @@
 		<div v-if="isLoading">
 			<icon name="spinner" pulse></icon>
 		</div>
+    <div v-if="error" class="col-sm-12 error-msg">
+      {{ error.response.status === 422 ? 'Špatné formátování - píseň musí začínat nějakým tagem (například [chorus] nebo [verse]) a povoluje jen určité znaky' : error.message }}
+    </div>
 		<div v-if="isReady" class="col-sm-12">
 			<div>
 				<div>
@@ -101,6 +104,7 @@ export default class VariantView extends Vue {
 	@songModule.Action private createSong!: (song: ICreateSong) => void
 	@songModule.State('state') private songState!: EStateTypes
 	@songModule.State private song!: ISong
+	@songModule.State private error!: any
 	@songModule.Getter private variantById!: (variantId: string) => IVariant
 
 	@interpreterModule.State('state') private interpretersState!: EStateTypes
@@ -211,15 +215,21 @@ export default class VariantView extends Vue {
 
     if (this.isNew) {
       await this.createSong({ ...song, variant })
-      this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: this.song.variants[0].id } })
+      if (!this.error) {
+        this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: this.song.variants[0].id } })
+      }
     } else if (this.isVariantNew) {
       const newVariant = await this.createVariant(variant)
       await this.updateSong({ ...song, id: this.song.id })
-      this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: newVariant.id } })
+      if (!this.error) {
+        this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: newVariant.id } })
+      }
     } else {
       await this.updateVariant({ ...variant, id: this.variantId })
       await this.updateSong({ ...song, id: this.song.id })
-      this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: this.variantId } })
+      if (!this.error) {
+        this.$router.push({ name: 'variantView', params: { songId: this.song.id, variantId: this.variantId } })
+      }
     }
   }
 
@@ -263,5 +273,10 @@ export default class VariantView extends Vue {
 
   .mb-10 {
     margin-bottom: 10px;
+  }
+
+  .error-msg {
+    font-weight: bold;
+    color: red;
   }
 </style>
