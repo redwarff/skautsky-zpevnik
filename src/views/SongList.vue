@@ -150,7 +150,7 @@ export default class SongList extends Vue {
 		cursor: pointer;
 	}
 	.selected {
-		background-color: rgba(0,255,0,0.2);
+		background-color: rgba(0,255,0,0.2) !important;
 	}
 	.selected:nth-of-type(odd) {
 		background-color: rgba(50,205,50,0.2) !important;
