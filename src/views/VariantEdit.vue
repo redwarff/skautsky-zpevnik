@@ -1,7 +1,7 @@
 <template>
 	<page-layout :title="isVariantNew ? 'Nová varianta písně' : 'Editace písně'">
     <template slot="header-button">
-			<router-link v-if="!isNew && isReady && !isVariantNew" class="btn btn-primary" :to="{ name: 'songVariantCreate', params: { songId: song.id } }">Vytvořit novou variantu písně</router-link>
+			<router-link v-if="!isNew && !isLoading && !isVariantNew" class="btn btn-primary" :to="{ name: 'songVariantCreate', params: { songId: song.id } }">Vytvořit novou variantu písně</router-link>
 		</template>
 		<div v-if="isLoading">
 			<icon name="spinner" pulse></icon>
@@ -9,7 +9,7 @@
     <div v-if="error" class="col-sm-12 error-msg">
       {{ error.response.status === 422 ? 'Špatné formátování - píseň musí začínat nějakým tagem (například [chorus] nebo [verse]) a povoluje jen určité znaky' : error.message }}
     </div>
-		<div v-if="isReady" class="col-sm-12">
+		<div v-if="!isLoading" class="col-sm-12">
 			<div>
 				<div>
 					<h4>{{ isNew ? 'Nová píseň' : songTitle }}</h4>

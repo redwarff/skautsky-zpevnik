@@ -59,6 +59,7 @@ const songModule = {
 		},
 		async createSong({ commit }: { commit: any }, song: ICreateSong) {
 			commit('setState', EStateTypes.loading)
+			commit('setError', undefined)
 			try {
 				const response = await api.createSong(song)
 				commit('setSong', response.data)
