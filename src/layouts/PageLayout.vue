@@ -60,12 +60,12 @@ export default class PageLayout extends Vue {
 
 	private get username () {
 		const user = this.$store.state.user
-		return user ? user.name : ''
+		return (user && user.currentUser) ? user.currentUser.name : ''
 	}
 
 	private get userLogoutLink () {
 		const user = this.$store.state.user
-		return user ? user.logout_link : ''
+		return (user && user.currentUser) ? user.currentUser.logout_link : ''
 	}
 
 	private created () {

@@ -12,7 +12,7 @@
 			</form>
 		</div>
 		<div v-if="isReady" class="col-sm-12 col-md-6 save-wrapper">
-			<button :class="`btn btn-${isChanged ? 'primary' : 'default'}`" @click="save()">Uložit</button>
+			<button :class="`btn btn-${isChanged ? 'primary' : 'default'}`" :disabled="!isChanged" @click="save()">Uložit</button>
 		</div>
 		<div v-if="isReady" class="col-sm-12 export-wrapper">
 			<span v-if="exportLoading" class="alert alert-primary">Zpěvník se připravuje...</span>

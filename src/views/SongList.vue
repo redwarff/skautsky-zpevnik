@@ -75,6 +75,7 @@ export default class SongList extends Vue {
 	@songListModule.Getter private lastPage!: number
 	@songListModule.Getter private songById!: (id: string) => ISong
 	@songListModule.State private perPage!: number
+	@songListModule.Mutation private reset!: () => void
 
 	@interpreterModule.State('items') private interpreters!: IInterpreter[]
 	@interpreterModule.State('state') private interpretersState!: EStateTypes
@@ -107,6 +108,7 @@ export default class SongList extends Vue {
 	}
 
 	private async created () {
+		this.reset()
 		this.fetchInterpreters()
 		this.fetch()
 		if (this.$route.params.songbookId) {

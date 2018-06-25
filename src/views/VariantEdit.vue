@@ -1,7 +1,7 @@
 <template>
 	<page-layout :title="isVariantNew ? 'Nová varianta písně' : 'Editace písně'">
     <template slot="header-button">
-			<router-link v-if="!isNew && isReady" class="btn btn-primary" :to="{ name: 'songVariantCreate', params: { songId: song.id } }">Vytvořit novou variantu písně</router-link>
+			<router-link v-if="!isNew && isReady && !isVariantNew" class="btn btn-primary" :to="{ name: 'songVariantCreate', params: { songId: song.id } }">Vytvořit novou variantu písně</router-link>
 		</template>
 		<div v-if="isLoading">
 			<icon name="spinner" pulse></icon>
@@ -56,8 +56,12 @@
               <label>Popis varianty:</label>
               <textarea class="form-control" rows="4" v-model="description"/>
             </div>
+            <div class="form-check mb-10">
+              <input type="checkbox" class="form-check-input" v-model="isPrivate">
+              <label class="form-check-label">Soukromá</label>
+            </div>
             <editor v-model="text"></editor>
-            <button class="btn btn-default" @click.prevent="save()" >
+            <button class="btn btn-primary" @click.prevent="save()" >
               Uložit
             </button>
           </form>
@@ -123,6 +127,7 @@ export default class VariantView extends Vue {
   private selectedLyricsAuthors = [] as ISelectOption[]
   private description = ''
   private text = ''
+  private isPrivate = false
   
 	private get isReady () {
 		return this.songState === EStateTypes.ready && this.interpretersState === EStateTypes.ready && this.authorsState === EStateTypes.ready
@@ -165,6 +170,7 @@ export default class VariantView extends Vue {
       if (!this.isVariantNew) {
         this.description = this.variantById(this.variantId).description
         this.text = this.variantById(this.variantId).text
+        this.isPrivate = this.variantById(this.variantId).visibility === 0 ? true : false
       }
     }
   }
@@ -200,7 +206,7 @@ export default class VariantView extends Vue {
     const variant = {
       description: this.description,
       text: this.text,
-      visibility: 1,
+      visibility: this.isPrivate ? 0 : 1,
     }
 
     if (this.isNew) {
@@ -228,12 +234,13 @@ export default class VariantView extends Vue {
     } else {
       this.isVariantNew = false
     }
+    this.formInit()
 	}
 
 	@Watch('variantId')
 	private onVariantChange (to: string, from: string) {
 		if (to && from && to !== from) {
-			this.$router.push({ name: 'VariantView', params: { songId: this.song.id, variantId: to } })
+			this.$router.push({ name: 'variantEdit', params: { songId: this.song.id, variantId: to } })
 		}
 	}
 }
@@ -246,9 +253,15 @@ export default class VariantView extends Vue {
 
 	.variant-wrapper {
 		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 
 	.variant-desc {
-		margin-top: 5px;
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
+
+  .mb-10 {
+    margin-bottom: 10px;
+  }
 </style>

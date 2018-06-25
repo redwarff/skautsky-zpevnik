@@ -41,6 +41,10 @@ const songListModule = {
 		setError (state: ISongListStoreState, error: any) {
 			state.error = error
 		},
+		reset (state: ISongListStoreState) {
+			state.searchQuery = ''
+			state.page = 0
+		},
 	},
 	actions: {
 		async fetch({ commit, state }: { commit: any, state: ISongListStoreState }) {
