@@ -44,7 +44,10 @@ const userModule = {
 				console.error(error)
 			}
 		},
-		async getUserName ({ commit }: { commit: any }, id: string) {
+		async getUserName ({ commit, state }: { commit: any, state: IUserStoreState }, id: string) {
+			if (state.items.find((item) => item.id === id)) {
+				return
+			}
 			commit('setState', EStateTypes.loading)
 			try {
 				const response = await api.getUsersName(id)

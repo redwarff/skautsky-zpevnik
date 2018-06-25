@@ -13,40 +13,37 @@ const songListModule = {
 		perPage: 50,
 		total: 0,
 		error: undefined,
-	} as ISongListStoreState,
+	} as ISongbookListStoreState,
 	getters: {
-		lastPage: (state: ISongListStoreState) => {
+		lastPage: (state: ISongbookListStoreState) => {
 			return Math.ceil(state.total / state.perPage) - 1
-		},
-		songById: (state: ISongListStoreState) => (id: string) => {
-			return state.items.find((item) => item.id === id)
 		},
 	},
 	mutations: {
-		setPage (state: ISongListStoreState, page: number) {
+		setPage (state: ISongbookListStoreState, page: number) {
 			state.page = page
 		},
-		setTotal (state: ISongListStoreState, total: number) {
+		setTotal (state: ISongbookListStoreState, total: number) {
 			state.total = total
 		},
-		setSearchQuery (state: ISongListStoreState, query: string) {
+		setSearchQuery (state: ISongbookListStoreState, query: string) {
 			state.searchQuery = query
 		},
-		setItems (state: ISongListStoreState, items: ISong[]) {
+		setItems (state: ISongbookListStoreState, items: ISongbook[]) {
 			state.items = items
 		},
-		setState (state: ISongListStoreState, moduleState: EStateTypes) {
+		setState (state: ISongbookListStoreState, moduleState: EStateTypes) {
 			state.state = moduleState
 		},
-		setError (state: ISongListStoreState, error: any) {
+		setError (state: ISongbookListStoreState, error: any) {
 			state.error = error
 		},
 	},
 	actions: {
-		async fetch({ commit, state }: { commit: any, state: ISongListStoreState }) {
+		async fetch({ commit, state }: { commit: any, state: ISongbookListStoreState }) {
 			commit('setState', EStateTypes.loading)
 			try {
-				const response = await api.getSongs({ query: state.searchQuery, page: state.page, perPage: state.perPage }) as any
+				const response = await api.getSongbooks({ query: state.searchQuery, page: state.page, perPage: state.perPage }) as any
 				const data = response.data
 				const total = data.count
 				const items = data.data

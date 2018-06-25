@@ -25,14 +25,33 @@ interface ICreateSong {
 	variant: Partial<IVariant>;
 }
 
-interface ISongBookSong {
-	variantId: number;
-	order?: number;
+interface ISongbookSong {
+	variant_id: string;
+	order: number;
+	song: ISongbookSongSong;
 }
 
-interface ISongBook {
+interface ISongbookSongSong {
+	song_id: string;
 	title: string;
-	songs: ISongBookSong[];
+	interpreters: IInterpreter[];
+}
+
+interface ISongbookOptions {
+	chorded: boolean;
+	columns: number;
+	format: string;
+	front_index: boolean;
+	index: boolean;
+	page_numbering: boolean;
+	song_numbering: boolean;
+}
+
+interface ISongbook {
+	id: string;
+	title: string;
+	songs: ISongbookSong[];
+	options: ISongbookOptions;
 }
 
 interface IRootStore {
@@ -42,6 +61,16 @@ interface IRootStore {
 interface ISongListStoreState {
 	state: EStateTypes;
 	items: ISong[];
+	searchQuery?: string;
+	page: number;
+	perPage: number;
+	total: number;
+	error?: any;
+}
+
+interface ISongbookListStoreState {
+	state: EStateTypes;
+	items: ISongbook[];
 	searchQuery?: string;
 	page: number;
 	perPage: number;
@@ -75,6 +104,14 @@ interface ISongStoreState {
 	state: EStateTypes;
 	song?: ISong;
 	error?: any;
+}
+
+interface ISongbookStoreState {
+	state: EStateTypes;
+	songbook?: ISongbook;
+	error?: any;
+	exportLink: string;
+	exportState?: EStateTypes;
 }
 
 interface IUserSimple {

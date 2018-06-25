@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
+    <dialogs-wrapper wrapper-name="default" />
   </div>
 </template>
 

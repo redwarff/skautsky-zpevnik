@@ -5,7 +5,7 @@
 				<icon name="search"></icon>
 			</span>
 		</div>
-		<input type="text" class="form-control" placeholder="Hledej píseň" v-model="inputValue" @keypress.enter="onSearch(inputValue)">
+		<input type="text" class="form-control" :placeholder="placeholder" v-model="inputValue" @keypress.enter="onSearch(inputValue)">
 	</div>
 </template>
 
@@ -15,6 +15,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 @Component
 export default class HelloWorld extends Vue {
 	@Prop() private onSearch!: (value: string) => void;
+	@Prop() private placeholder!: string;
 	private inputValue = ''
 }
 </script>

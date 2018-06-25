@@ -24,15 +24,6 @@
 			<router-link tag="button" class="btn btn-default button-mr" :to="{ name: 'variantEdit', params: { songId: song.id, variantId } }">
 				Upravit
 			</router-link>
-			<!-- <button class="btn btn-default button-mr" @click="exportVariant(variantId)">
-				Zobrazit v pdf
-			</button> -->
-			<!-- <span v-if="exportLoading" class="alert alert-primary">Píseň se připravuje...</span>
-			<span v-if="exportFailed" class="alert alert-danger">Píseň se nepodařilo zkompilovat.</span>
-			<span v-if="exportReady" class="alert alert-success">
-				Píseň je připravena! Stáhnout ji můžeš
-				<a target="_blank" rel="noopener noreferrer" :href="exportLink"> zde</a>
-			</span> -->
 		</div>
 	</page-layout>
 </template>
@@ -70,18 +61,6 @@ export default class VariantView extends Vue {
 	private get isLoading () {
 		return this.state === EStateTypes.loading || this.interpretersState === EStateTypes.loading
 	}
-
-	// private get exportLoading () {
-	// 	return this.exportState === EStateTypes.loading
-	// }
-
-	// private get exportReady () {
-	// 	return this.exportState === EStateTypes.ready
-	// }
-
-	// private get exportFailed () {
-	// 	return this.exportState === EStateTypes.failed
-	// }
 
 	private get formattedVariantText () {
 		const text = this.variantById(this.variantId).text.replace(/\[verse\]/ig, '')

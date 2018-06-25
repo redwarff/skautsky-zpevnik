@@ -91,11 +91,15 @@ export default class Api {
 		return api.put(`songs/${id}`, song)
 	}
 
+	public async createVariant (songId: string, variant: IVariant) {
+		return api.post(`songs/${songId}/variants`, variant)
+	}
+
 	public async updateVariant (songId: string, variantId: string, variant: IVariant) {
 		return api.put(`songs/${songId}/variants/${variantId}`, variant)
 	}
 
-	public async updateSongbook (id: string, songBook: ISongBook) {
+	public async updateSongbook (id: string, songBook: ISongbook) {
 		return api.put(`songbooks/${id}`, songBook)
 	}
 

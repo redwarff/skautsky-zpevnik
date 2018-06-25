@@ -22,9 +22,24 @@ export default new Router({
 			component: SongbookList,
 		},
 		{
-			path: '/songbook/:songbookId',
-			name: 'songbook',
+			path: '/songbook/new',
+			name: 'songbookCreate',
 			component: SongbookEditor,
+		},
+		{
+			path: '/songbook/:songbookId/add-songs',
+			name: 'songbookAddSongs',
+			component: SongList,
+		},
+		{
+			path: '/songbook/:songbookId',
+			name: 'songbookEdit',
+			component: SongbookEditor,
+		},
+		{
+			path: '/song/:songId/variant/new',
+			name: 'songVariantCreate',
+			component: VariantEdit,
 		},
 		{
 			path: '/song/:songId/variant/:variantId',

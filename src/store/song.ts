@@ -21,15 +21,12 @@ const songModule = {
 		setVariant (state: ISongStoreState, variant: IVariant) {
 			state.song = { ...state.song, variants: state.song!.variants.map((_variant) => variant.id === _variant.id ? variant : _variant) } as ISong
 		},
-		// setExportLink (state: ISongStoreState, link: string) {
-		// 	state.exportLink = link
-		// },
+		addVariant (state: ISongStoreState, variant: IVariant) {
+			state.song!.variants.push(variant)
+		},
 		setState (state: ISongStoreState, moduleState: EStateTypes) {
 			state.state = moduleState
 		},
-		// setExportState (state: ISongStoreState, moduleState: EStateTypes) {
-		// 	state.exportState = moduleState
-		// },
 		setError (state: ISongStoreState, error: any) {
 			state.error = error
 		},
@@ -47,18 +44,6 @@ const songModule = {
 				console.error(error)
 			}
 		},
-		// async exportVariant({ commit, state }: { commit: any, state: ISongStoreState }, variantId: string) {
-		// 	commit('setExportState', EStateTypes.loading)
-		// 	try {
-		// 		const response = await api.exportVariant(state.song!.id, variantId)
-		// 		commit('setExportLink', 'https://zpevnik.skauting.cz/' + response.data.link)
-		// 		commit('setExportState', EStateTypes.ready)
-		// 	} catch (error) {
-		// 		commit('setExportState', EStateTypes.failed)
-		// 		commit('setError', error)
-		// 		console.error(error)
-		// 	}
-		// },
 		async updateSong({ commit }: { commit: any }, song: ISong) {
 			commit('setState', EStateTypes.loading)
 			try {
@@ -77,6 +62,19 @@ const songModule = {
 				const response = await api.createSong(song)
 				commit('setSong', response.data)
 				commit('setState', EStateTypes.ready)
+			} catch (error) {
+				commit('setState', EStateTypes.failed)
+				commit('setError', error)
+				console.error(error)
+			}
+		},
+		async createVariant({ commit, state }: { commit: any, state: ISongStoreState }, variant: IVariant) {
+			commit('setState', EStateTypes.loading)
+			try {
+				const response = await api.createVariant(state.song!.id, variant)
+				commit('addVariant', response.data)
+				commit('setState', EStateTypes.ready)
+				return response.data
 			} catch (error) {
 				commit('setState', EStateTypes.failed)
 				commit('setError', error)

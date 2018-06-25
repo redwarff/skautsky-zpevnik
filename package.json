@@ -16,9 +16,11 @@
     "vue": "^2.5.16",
     "vue-awesome": "^2.3.7",
     "vue-class-component": "^6.0.0",
+    "vue-modal-dialogs": "^3.0.0",
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",
     "vue-select": "^2.4.0",
+    "vuedraggable": "^2.16.0",
     "vuex": "^3.0.1",
     "vuex-class": "^0.3.1"
   },
