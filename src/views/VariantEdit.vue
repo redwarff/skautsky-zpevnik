@@ -16,7 +16,7 @@
 				</div>
 				<div v-if="!isNew" class="variant-wrapper">
 					<select v-if="!isVariantNew" v-model="variantId">
-						<option v-for="(variant, i) in song.variants" :key="variant.id" :value="variant.id">Varianta {{ i + 1 }}</option>
+						<option v-for="variant in song.variants" :key="variant.id" :value="variant.id">{{ variant.name }}</option>
 					</select>
           <div v-else>Nová varianta</div>
 					<div class="variant-desc">
@@ -30,7 +30,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Jméno písně:</label>
+                  <label>Jméno písně:*</label>
                   <input type="text" class="form-control" id="name" v-model="songTitle" />
                 </div>
               </div>
@@ -52,6 +52,12 @@
                 <div class="form-group">
                   <label>Autor textu:</label>
                   <v-select multiple taggable v-model="selectedLyricsAuthors" :options="mappedAuthors" :closeOnSelect="false" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Název varianty:*</label>
+                  <input type="text" v-model="variantName" class="form-control" />
                 </div>
               </div>
             </div>
@@ -130,6 +136,7 @@ export default class VariantView extends Vue {
   private selectedMusicAuthors = [] as ISelectOption[]
   private selectedLyricsAuthors = [] as ISelectOption[]
   private description = ''
+  private variantName = ''
   private text = ''
   private isPrivate = false
   
@@ -173,6 +180,7 @@ export default class VariantView extends Vue {
 
       if (!this.isVariantNew) {
         this.description = this.variantById(this.variantId).description
+        this.variantName = this.variantById(this.variantId).name
         this.text = this.variantById(this.variantId).text
         this.isPrivate = this.variantById(this.variantId).visibility === 0 ? true : false
       }
@@ -209,6 +217,7 @@ export default class VariantView extends Vue {
 
     const variant = {
       description: this.description,
+      name: this.variantName,
       text: this.text,
       visibility: this.isPrivate ? 0 : 1,
     }

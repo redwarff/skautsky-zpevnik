@@ -82,6 +82,7 @@ export default class SongbookEdit extends Vue {
 	@songbookModule.Action private exportSongbook!: () => void
 	@songbookModule.State private state!: EStateTypes
 	@songbookModule.State private exportState!: EStateTypes
+	@songbookModule.State private exportLink!: string
 	@songbookModule.State private songbook!: ISongbook
 
 	@interpreterModule.State('state') private interpretersState!: EStateTypes

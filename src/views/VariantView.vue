@@ -11,7 +11,7 @@
 				</div>
 				<div class="variant-wrapper">
 					<select v-model="variantId">
-						<option v-for="(variant, i) in song.variants" :key="variant.id" :value="variant.id">Varianta {{ i + 1 }}</option>
+						<option v-for="variant in song.variants" :key="variant.id" :value="variant.id">{{ variant.name }}</option>
 					</select>
 					<div class="variant-desc">
 						<strong>Popis varianty:</strong> {{ variantById(variantId).description }}
@@ -63,7 +63,7 @@ export default class VariantView extends Vue {
 	}
 
 	private get formattedVariantText () {
-		const text = this.variantById(this.variantId).text.replace(/\[verse\]/ig, '').replace(/\[chorus\]/ig, '')
+		const text = this.variantById(this.variantId).text.replace(/\[verse\]/ig, '').replace(/\[chorus\]/ig, 'Ref')
 		const lines = text
 			.split(/[\n\r]/)
 			.map((line) => line.trim())

@@ -1,6 +1,6 @@
 <template>
 	<div class="form-group editor-group">
-		<label>Text varianty:</label>
+		<label>Text varianty:*</label>
 		<div class="editor-control">
 			<div class="btn-group">
 				<button v-for="tab in tabs" :key="tab" class="btn btn-default" @click.prevent="onTabClick(tab)">{{ tab }}</button>

@@ -6,6 +6,7 @@ interface IAuthorsObject {
 interface IVariant {
 	id: string;
 	text: string;
+	name: string;
 	description: string;
 	visibility?: number;
 }
