@@ -9,7 +9,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="variant-wrapper" v-for="variant in variants" :key="variant.id" @click="$close(variant.id)">{{ `${variant.name} - ${variant.description}` }}</div>
+				<div class="variant-wrapper" v-for="variant in variants" :key="variant.id" @click="$close(variant.id)">{{ `${variant.title} - ${variant.description}` }}</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$close(false)">Zrušit</button>

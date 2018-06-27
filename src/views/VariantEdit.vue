@@ -16,7 +16,7 @@
 				</div>
 				<div v-if="!isNew" class="variant-wrapper">
 					<select v-if="!isVariantNew" v-model="variantId">
-						<option v-for="variant in song.variants" :key="variant.id" :value="variant.id">{{ variant.name }}</option>
+						<option v-for="variant in song.variants" :key="variant.id" :value="variant.id">{{ variant.title }}</option>
 					</select>
           <div v-else>Nová varianta</div>
 					<div class="variant-desc">
@@ -180,7 +180,7 @@ export default class VariantView extends Vue {
 
       if (!this.isVariantNew) {
         this.description = this.variantById(this.variantId).description
-        this.variantName = this.variantById(this.variantId).name
+        this.variantName = this.variantById(this.variantId).title
         this.text = this.variantById(this.variantId).text
         this.isPrivate = this.variantById(this.variantId).visibility === 0 ? true : false
       }
@@ -217,7 +217,7 @@ export default class VariantView extends Vue {
 
     const variant = {
       description: this.description,
-      name: this.variantName,
+      title: this.variantName,
       text: this.text,
       visibility: this.isPrivate ? 0 : 1,
     }
