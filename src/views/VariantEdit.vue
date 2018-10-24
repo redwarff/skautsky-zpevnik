@@ -6,8 +6,8 @@
 		<div v-if="isLoading">
 			<icon name="spinner" pulse></icon>
 		</div>
-    <div v-if="error" class="col-sm-12 error-msg">
-      {{ error.response.status === 422 ? 'Špatné formátování - píseň musí začínat nějakým tagem (například [chorus] nebo [verse]) a povoluje jen určité znaky' : error.message }}
+    <div class="alert alert-danger col-sm-12" role="alert" v-if="error" v-for="err in error.response.data" :key="err.message">
+      {{ err.message }}
     </div>
 		<div v-if="!isLoading" class="col-sm-12">
 			<div>
