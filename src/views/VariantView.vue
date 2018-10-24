@@ -10,7 +10,7 @@
 					<h5>{{ mapInterpretersNames(song.interpreters) }}</h5>
 				</div>
 				<div class="variant-wrapper">
-					<select v-model="variantId">
+					<select v-model="variantId" class="form-control col-sm-12 col-md-6">
 						<option v-for="variant in song.variants" :key="variant.id" :value="variant.id">{{ variant.title }}</option>
 					</select>
 					<div class="variant-desc">

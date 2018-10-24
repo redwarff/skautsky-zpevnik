@@ -15,7 +15,7 @@
 					<h4>{{ isNew ? 'Nová píseň' : songTitle }}</h4>
 				</div>
 				<div v-if="!isNew" class="variant-wrapper">
-					<select v-if="!isVariantNew" v-model="variantId">
+					<select v-if="!isVariantNew" v-model="variantId" class="form-control col-sm-12 col-md-6">
 						<option v-for="variant in song.variants" :key="variant.id" :value="variant.id">{{ variant.title }}</option>
 					</select>
           <div v-else>Nová varianta</div>
