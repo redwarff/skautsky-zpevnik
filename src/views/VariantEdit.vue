@@ -6,7 +6,7 @@
 		<div v-if="isLoading">
 			<icon name="spinner" pulse></icon>
 		</div>
-    <div class="alert alert-danger col-sm-12" role="alert" v-if="error" v-for="err in error.response.data" :key="err.message">
+    <div class="alert alert-danger col-sm-12" role="alert" v-if="error && errorData" v-for="err in errorData" :key="err.message">
       {{ err.message }}
     </div>
 		<div v-if="!isLoading" class="col-sm-12">
@@ -154,6 +154,10 @@ export default class VariantView extends Vue {
 
   private get mappedAuthors () {
     return this.authors.map(author => ({ label: author.name, value: author.id }))
+  }
+
+  private get errorData () {
+    return this.error && this.error.response && this.error.response.data
   }
 
 	private async created () {
