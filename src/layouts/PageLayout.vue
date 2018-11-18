@@ -37,16 +37,16 @@
 						    <span aria-hidden="true">&times;</span>
 						  </button>
 							<p>
-								Vítej ve Skautském zpěvníku - nástroji, kde si vytvoříš svůj zpěvník během pár minut.
+								<b>Vítej ve Skautském zpěvníku - nástroji, kde si vytvoříš svůj zpěvník během pár minut.</b>
 								<br /><br />
-								Měj na zřeteli, že se zatím jedná o beta-verzi celého nástroje a proto se předem omlouváme, pokud by něco nefungovalo. Najdeš-li takovou věc, neváhej nám napsat, co nefunguje na <a href="mailto:zpevnik@skaut.cz">zpevnik@skaut.cz</a>. Stejn tak oceníme nápady či připomínky k čemukoliv co už funguje.
+								Prosím, měj na zřeteli, že se zatím jedná o beta-verzi celého nástroje a proto se předem omlouváme, pokud by něco nefungovalo. Najdeš-li takovou věc, neváhej nám napsat, co nefunguje na <a href="mailto:zpevnik@skaut.cz">zpevnik@skaut.cz</a>. Stejně tak oceníme nápady či připomínky k čemukoliv, co už funguje.
 								<br /><br />
 								Abychom z beta-verze udělali finální verzi, potřebujeme ještě pomoct s dvěma body.
 								<br /><br />
 								1. Ve zpěvníku vidíte hodně písniček, ale část z nich ještě není přesně dle našeho formátu. Ty poznáte tak, že nemají označeného interpreta. Takže ty bez interpreta je třeba otevřít a upravit začátky slok/refrénů a akordy podle našeho formátu.
 								Nápovědu, jak to má vypadat, najdete u každé editované písničky... a kdybyste si nevěděli rady.
 								<br /><br />
-								2. Žádáme autory o svolení s užitím jejich písní zde ve zpěvníku, a to přes OSA. Abychom jim mohli poslat žádost, musíme u každé skladny (písně) mít uvedeného autora textu i autora hudby. Tyto údaje se dají dohledat v databázi zde (<a href="https://search.osa.cz">https://search.osa.cz</a>). Pokud najdeš autora hudby/textu k dané psíni, zaznamenej to v této <a href="https://docs.google.com/spreadsheets/d/14Mymt6xNU-7n1ur5Vg0fTtO5QF-z8eekDtmubkTjnMI/edit?usp=sharing">tabulce</a>.
+								2. Žádáme autory o svolení s užitím jejich písní zde ve zpěvníku, a to přes OSA. Abychom jim mohli poslat žádost, musíme u každé skladny (písně) mít uvedeného autora textu i autora hudby. Tyto údaje se dají dohledat v databázi <a href="https://search.osa.cz">zde</a>. Pokud najdeš autora hudby/textu k dané psíni, zaznamenej to v této <a href="https://docs.google.com/spreadsheets/d/14Mymt6xNU-7n1ur5Vg0fTtO5QF-z8eekDtmubkTjnMI/edit?usp=sharing">tabulce</a>.
 								<br /><br />
 								Díky moc za pomoc,<br />
 								tým Skautského zpěvníku
